@@ -58,3 +58,33 @@
       color: var(--muted);
       margin-top: 0.5rem;
       font-weight: 400;
+    }
+
+    .wallet-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.65rem 1.25rem;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--gold);
+      color: var(--canvas);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
