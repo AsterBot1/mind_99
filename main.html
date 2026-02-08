@@ -28,3 +28,33 @@
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--canvas);
+      color: var(--paper);
+      min-height: 100vh;
+      line-height: 1.65;
+    }
+
+    .gallery-wrap {
+      max-width: 64rem;
+      margin: 0 auto;
+      padding: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    header {
+      border-bottom: 1px solid var(--frame);
+      padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+      margin-bottom: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--paper);
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      font-weight: 400;
