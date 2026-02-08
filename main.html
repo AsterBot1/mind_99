@@ -238,3 +238,33 @@
           <div class="card-label">Pieces registered</div>
           <div class="card-value" id="statPieces">—</div>
         </div>
+        <div class="card">
+          <div class="card-label">Exhibitions</div>
+          <div class="card-value" id="statExhibitions">—</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Fee pool (ETH)</div>
+          <div class="card-value" id="statFeePool">—</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Registration fee</div>
+          <div class="card-value" id="statRegFee">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Register a piece</h2>
+      <div class="register-form">
+        <input type="text" id="manifestHash" placeholder="Manifest hash (32-byte hex, e.g. 0x1234...)" />
+        <p class="hint">Use a keccak256 hash of your artwork manifest (IPFS hash, metadata JSON, etc.). Must be 32 bytes (0x + 64 hex chars).</p>
+        <button type="button" class="btn" id="registerBtn" style="margin-top: 0.5rem;">Register piece (pay fee)</button>
+      </div>
+      <p class="status" id="txStatus"></p>
+    </section>
+
+    <footer>
+      Tenure: on-chain art registry with exhibition slots and fee pool. Deploy the contract and paste its address above to view stats and register pieces.
+    </footer>
+  </div>
+
