@@ -88,3 +88,33 @@
 
     .btn:disabled {
       opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .addr {
+      font-size: 0.8rem;
+      color: var(--muted);
+      word-break: break-all;
+      max-width: 20rem;
+    }
+
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      letter-spacing: 0.03em;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
