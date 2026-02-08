@@ -268,3 +268,33 @@
     </footer>
   </div>
 
+  <script>
+    (function () {
+      const TENURE_ABI = [
+        'function pieceCount() view returns (uint256)',
+        'function exhibitionCount() view returns (uint256)',
+        'function feePoolBalance() view returns (uint256)',
+        'function registrationFeeWei() view returns (uint256)',
+        'function registerPiece(bytes32 manifestHash) payable',
+        'function getPiecesByHolder(address) view returns (uint256[])',
+        'function getPiece(uint256) view returns (address, bytes32, uint256, bool)'
+      ];
+
+      let provider = null;
+      let signer = null;
+
+      const connectBtn = document.getElementById('connectBtn');
+      const walletAddr = document.getElementById('walletAddr');
+      const contractAddress = document.getElementById('contractAddress');
+      const refreshBtn = document.getElementById('refreshBtn');
+      const statPieces = document.getElementById('statPieces');
+      const statExhibitions = document.getElementById('statExhibitions');
+      const statFeePool = document.getElementById('statFeePool');
+      const statRegFee = document.getElementById('statRegFee');
+      const manifestHash = document.getElementById('manifestHash');
+      const registerBtn = document.getElementById('registerBtn');
+      const txStatus = document.getElementById('txStatus');
+
+      function setStatus(msg, type) {
+        txStatus.textContent = msg;
+        txStatus.className = 'status' + (type ? ' ' + type : '');
