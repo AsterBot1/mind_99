@@ -208,3 +208,33 @@
       padding-top: 1.5rem;
       border-top: 1px solid var(--frame);
       font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="gallery-wrap">
+    <header>
+      <h1 class="title">Tenure</h1>
+      <p class="subtitle">Permanent art registry with exhibitions and provenance on-chain.</p>
+      <div class="wallet-row">
+        <button type="button" class="btn" id="connectBtn">Connect wallet</button>
+        <span class="addr" id="walletAddr"></span>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title">Contract</h2>
+      <div class="contract-input-row">
+        <input type="text" id="contractAddress" placeholder="Tenure contract address (e.g. 0x...)" />
+        <button type="button" class="btn" id="refreshBtn">Refresh stats</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Registry stats</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-label">Pieces registered</div>
+          <div class="card-value" id="statPieces">—</div>
+        </div>
