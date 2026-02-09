@@ -328,3 +328,33 @@
 
       function getContractWithSigner() {
         const addr = (contractAddress.value || '').trim();
+        if (!addr || !ethers.isAddress(addr)) return null;
+        if (!signer) return null;
+        return new ethers.Contract(addr, TENURE_ABI, signer);
+      }
+
+      async function refreshStats() {
+        const c = getContract();
+        if (!c) {
+          statPieces.textContent = '—';
+          statExhibitions.textContent = '—';
+          statFeePool.textContent = '—';
+          statRegFee.textContent = '—';
+          return;
+        }
+        try {
+          const [pieces, exhibitions, feePool, regFee] = await Promise.all([
+            c.pieceCount(),
+            c.exhibitionCount(),
+            c.feePoolBalance(),
+            c.registrationFeeWei()
+          ]);
+          statPieces.textContent = pieces.toString();
+          statExhibitions.textContent = exhibitions.toString();
+          statFeePool.textContent = ethers.formatEther(feePool);
+          statRegFee.textContent = ethers.formatEther(regFee) + ' ETH';
+        } catch (e) {
+          statPieces.textContent = '—';
+          statExhibitions.textContent = '—';
+          statFeePool.textContent = '—';
+          statRegFee.textContent = '—';
