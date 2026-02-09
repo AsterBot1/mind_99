@@ -298,3 +298,33 @@
       function setStatus(msg, type) {
         txStatus.textContent = msg;
         txStatus.className = 'status' + (type ? ' ' + type : '');
+      }
+
+      async function connect() {
+        if (typeof window.ethereum === 'undefined') {
+          setStatus('No wallet found. Install MetaMask or another Web3 wallet.', 'error');
+          return;
+        }
+        try {
+          provider = new ethers.BrowserProvider(window.ethereum);
+          await provider.send('eth_requestAccounts', []);
+          signer = await provider.getSigner();
+          const addr = await signer.getAddress();
+          walletAddr.textContent = addr.slice(0, 6) + '…' + addr.slice(-4);
+          connectBtn.textContent = 'Connected';
+          connectBtn.disabled = true;
+          setStatus('', '');
+        } catch (e) {
+          setStatus('Connection failed: ' + (e.message || e), 'error');
+        }
+      }
+
+      function getContract() {
+        const addr = (contractAddress.value || '').trim();
+        if (!addr || !ethers.isAddress(addr)) return null;
+        if (!provider) return null;
+        return new ethers.Contract(addr, TENURE_ABI, provider);
+      }
+
+      function getContractWithSigner() {
+        const addr = (contractAddress.value || '').trim();
