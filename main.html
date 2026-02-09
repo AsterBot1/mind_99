@@ -388,3 +388,23 @@
           registerBtn.disabled = true;
           const tx = await c.registerPiece(hash, { value: fee });
           setStatus('Waiting for confirmation…', '');
+          await tx.wait();
+          setStatus('Piece registered successfully.', 'success');
+          manifestHash.value = '';
+          refreshStats();
+        } catch (e) {
+          setStatus('Failed: ' + (e.shortMessage || e.message || e), 'error');
+        } finally {
+          registerBtn.disabled = false;
+        }
+      }
+
+      connectBtn.addEventListener('click', connect);
+      refreshBtn.addEventListener('click', refreshStats);
+      registerBtn.addEventListener('click', registerPiece);
+
+      if ((contractAddress.value || '').trim() && provider) refreshStats();
+    })();
+  </script>
+</body>
+</html>
