@@ -358,3 +358,33 @@
           statExhibitions.textContent = '—';
           statFeePool.textContent = '—';
           statRegFee.textContent = '—';
+          setStatus('Read failed. Is the address a Tenure contract?', 'error');
+        }
+      }
+
+      async function registerPiece() {
+        const c = getContractWithSigner();
+        if (!c) {
+          setStatus('Connect wallet and enter a valid Tenure contract address.', 'error');
+          return;
+        }
+        const raw = (manifestHash.value || '').trim();
+        if (!raw) {
+          setStatus('Enter a 32-byte manifest hash (0x + 64 hex characters).', 'error');
+          return;
+        }
+        let hash;
+        try {
+          if (raw.length === 66 && raw.startsWith('0x')) {
+            hash = raw;
+          } else if (raw.length === 64 && /^[0-9a-fA-F]+$/.test(raw)) {
+            hash = '0x' + raw;
+          } else {
+            setStatus('Hash must be 32 bytes: 0x followed by 64 hex chars.', 'error');
+            return;
+          }
+          const fee = await c.registrationFeeWei();
+          setStatus('Confirm transaction in your wallet…', '');
+          registerBtn.disabled = true;
+          const tx = await c.registerPiece(hash, { value: fee });
+          setStatus('Waiting for confirmation…', '');
